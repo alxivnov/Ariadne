@@ -1,0 +1,65 @@
+{
+    "method": "GET",
+    "url": "https://twitter.com/i/api/graphql/Nk5hlAxl7O0bd_IwiokBQw/TweetDetail",
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en",
+        "Authorization": "Bearer #{bearer_token}",
+        "Connection": "keep-alive",
+        "Content-Type": "application/json",
+        "Cookie": "auth_token=#{auth_token}; ct0=#{csrf_token}",
+        "Host": "twitter.com",
+        "Referer": "https://twitter.com/#{screen_name}/status/#{focalTweetId}",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-origin",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15",
+        "x-client-transaction-id": "#{}",
+        "x-csrf-token": "#{csrf_token}",
+        "x-twitter-active-user": "yes",
+        "x-twitter-auth-type": "OAuth2Session",
+        "x-twitter-client-language": "en"
+    },
+    "query": {
+        "features": {
+            "c9s_tweet_anatomy_moderator_badge_enabled": true,
+            "communities_web_enable_tweet_community_results_fetch": true,
+            "creator_subscriptions_tweet_preview_api_enabled": true,
+            "freedom_of_speech_not_reach_fetch_enabled": true,
+            "graphql_is_translatable_rweb_tweet_is_translatable_enabled": true,
+            "longform_notetweets_consumption_enabled": true,
+            "longform_notetweets_inline_media_enabled": true,
+            "longform_notetweets_rich_text_read_enabled": true,
+            "responsive_web_edit_tweet_api_enabled": true,
+            "responsive_web_enhance_cards_enabled": false,
+            "responsive_web_graphql_exclude_directive_enabled": true,
+            "responsive_web_graphql_skip_user_profile_image_extensions_enabled": false,
+            "responsive_web_graphql_timeline_navigation_enabled": true,
+            "responsive_web_twitter_article_tweet_consumption_enabled": true,
+            "rweb_tipjar_consumption_enabled": false,
+            "rweb_video_timestamps_enabled": true,
+            "standardized_nudges_misinfo": true,
+            "tweet_awards_web_tipping_enabled": false,
+            "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled": true,
+            "tweetypie_unmention_optimization_enabled": true,
+            "verified_phone_label_enabled": false,
+            "view_counts_everywhere_api_enabled": true
+        },
+        "fieldToggles": {
+            "withArticlePlainText": false,
+            "withArticleRichContentState": true
+        },
+        "variables": {
+            "focalTweetId": "#{focalTweetId}",
+            "includePromotedContent": true,
+            "referrer": "profile",
+            "withBirdwatchNotes": true,
+            "withCommunity": true,
+            "withQuickPromoteEligibilityTweetFields": true,
+            "withV2Timeline": true,
+            "withVoice": true,
+            "with_rux_injections": false
+        }
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "method": "GET",
+    "url": "https://twitter.com/i/api/graphql/qW5u-DAuXpMEG0zA1F7UGQ/UserByScreenName",
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en",
+        "Authorization": "Bearer #{bearer_token}",
+        "Connection": "keep-alive",
+        "Content-Type": "application/json",
+        "Cookie": "auth_token=#{auth_token}; ct0=#{csrf_token}",
+        "Host": "twitter.com",
+        "Referer": "https://twitter.com/#{screen_name}",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-origin",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15",
+        "x-client-transaction-id": "#{}",
+        "x-csrf-token": "#{csrf_token}",
+        "x-twitter-active-user": "yes",
+        "x-twitter-auth-type": "OAuth2Session",
+        "x-twitter-client-language": "en"
+    },
+    "query": {
+        "features": {
+            "creator_subscriptions_tweet_preview_api_enabled": true,
+            "hidden_profile_likes_enabled": true,
+            "hidden_profile_subscriptions_enabled": true,
+            "highlights_tweets_tab_ui_enabled": true,
+            "responsive_web_graphql_exclude_directive_enabled": true,
+            "responsive_web_graphql_skip_user_profile_image_extensions_enabled": false,
+            "responsive_web_graphql_timeline_navigation_enabled": true,
+            "responsive_web_twitter_article_notes_tab_enabled": true,
+            "rweb_tipjar_consumption_enabled": false,
+            "subscriptions_verification_info_is_identity_verified_enabled": true,
+            "subscriptions_verification_info_verified_since_enabled": true,
+            "verified_phone_label_enabled": false
+        },
+        "fieldToggles": {
+            "withAuxiliaryUserLabels": false
+        },
+        "variables": {
+            "screen_name": "#{screen_name}",
+            "withSafetyModeUserFields": true
+        }
+    }
+}
