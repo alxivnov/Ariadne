@@ -81,25 +81,25 @@ export default {
 
 <div class="-card-footer">
 	<a class="-card-subtitle hstack text-decoration-none text-muted" :href="link(tweet)" target="_blank">
-		<span :class="{ 'text-body fw-bold': tweet.legacy.retweeted_status_result }">
-			<i class="bi bi-repeat me-2"></i>
-			<small>{{ number(tweet.legacy.retweet_count) }}</small>
+		<span class="me-3" :class="{ 'text-body fw-bold': tweet.legacy.retweeted_status_result }">
+			<i class="bi bi-repeat align-middle me-2"></i>
+			<small class="align-text-top">{{ number(tweet.legacy.retweet_count) }}</small>
 		</span>
-		<span class="ms-auto" :class="{ 'text-body fw-bold': tweet.legacy.in_reply_to_status_id_str }">
-			<i class="bi bi-chat me-2"></i>
-			<small>{{ number(tweet.legacy.reply_count) }}</small>
+		<span class="me-3" :class="{ 'text-body fw-bold': tweet.legacy.in_reply_to_status_id_str }">
+			<i class="bi bi-chat align-middle me-2"></i>
+			<small class="align-text-top">{{ number(tweet.legacy.reply_count) }}</small>
 		</span>
-		<span class="ms-auto" :class="{ 'text-body fw-bold': tweet.quoted_status_result }">
-			<i class="bi bi-quote me-2"></i>
-			<small>{{ number(tweet.legacy.quote_count) }}</small>
+		<span class="me-3" :class="{ 'text-body fw-bold': tweet.quoted_status_result }">
+			<i class="bi bi-quote align-middle me-2"></i>
+			<small class="align-text-top">{{ number(tweet.legacy.quote_count) }}</small>
+		</span>
+		<span class="-ms-auto">
+			<i class="bi bi-heart align-middle me-2"></i>
+			<small class="align-text-top">{{ number(tweet.legacy.favorite_count) }}</small>
 		</span>
 		<span class="ms-auto">
-			<i class="bi bi-heart me-2"></i>
-			<small>{{ number(tweet.legacy.favorite_count) }}</small>
-		</span>
-		<span class="ms-auto">
-			<i class="bi bi-bar-chart me-2"></i>
-			<small>{{ number(tweet.views.count || 0) }}</small>
+			<i class="bi bi-eye align-middle me-2"></i>
+			<small class="align-text-top">{{ number(tweet.views.count || 0) }}</small>
 		</span>
 	</a>
 </div>

@@ -1,37 +1,31 @@
 <?php
-	// https://developer.twitter.com/en/docs/authentication/oauth-2-0
 
-	function array_key_value($key, $array, $default = NULL) {
-		return array_key_exists($key, $array)
-			? $array[$key]
-			: $default;
-	}
-	$request_method = array_key_value('REQUEST_METHOD', $_SERVER);
-	$request_uri = array_key_value('REQUEST_URI', $_SERVER);
-
-
-	header('Content-Type: application/json');
-	header('Access-Control-Allow-Origin: *');
-
-	if (array_key_exists('test', $_GET)) {
-		print(file_get_contents('../data/data.json'));
-
-		exit();
-	}
-
-	// header('Content-Encoding: gzip, deflate, br');
-
-	if ($request_method == 'OPTIONS') {
-		exit();
-	}
+function array_key_value($key, $array, $default = NULL) {
+	return array_key_exists($key, $array)
+		? $array[$key]
+		: $default;
+}
+function cookie_line($key, $val) {
+	return $key.'='.urlencode($val);
+}
+function header_line($key, $val) {
+	return $key.': '.$val;
+};
 
 
-	$api = array_key_value('$api', $_GET, 'HomeLatestTimeline');
-	$file = file_get_contents('./api/'.$api.'.json');
+
+$searches = [
+	'Bitcoin',
+	'Ethereum',
+	'ONDO'
+];
+
+foreach ($searches as $search) {
+	$file = file_get_contents('./twitter/api/SearchTimeline.json');
 	$json = json_decode($file, true);
 
 
-	$auth = json_decode(file_get_contents('./.auth.json'), true);
+	$auth = json_decode(file_get_contents('./twitter/.auth.json'), true);
 	$json['cookies'] = array_merge(
 		array_key_value('cookies', $json, array()),
 		array_key_value('cookies', $auth, array())
@@ -52,16 +46,11 @@
 	}
 
 
-	function variables($var) {
-		return substr($var, 0, 1) != '$';
-	}
-	// $variables = array_filter($_GET, 'variables', ARRAY_FILTER_USE_KEY);
-	$variables = [];
-	foreach ($_GET as $key => $val) {
-		if (variables($key)) {
-			$variables[$key] = $val;
-		}
-	}
+
+	$json['headers']['Accept-Encoding'] = 'json';
+	$variables = [
+		'rawQuery' => $search
+	];
 	$json['query']['variables'] = array_merge(
 		array_key_value('variables', $json['query'], array()),
 		$variables
@@ -69,15 +58,9 @@
 
 
 	if (array_key_exists('cookies', $json)) {
-		function cookie_line($key, $val) {
-			return $key.'='.urlencode($val);
-		}
 		$cookie = implode('; ', array_map('cookie_line', array_keys($json['cookies']), array_values($json['cookies'])));
 		$json['headers']['Cookie'] = $cookie;
 	}
-	function header_line($key, $val) {
-		return $key.': '.$val;
-	};
 	$header = array_map('header_line', array_keys($json['headers']), array_values($json['headers']));
 	$query = '';
 	$variables = array_key_exists('variables', $json) ? $json['variables'] : $json['query']['variables'];
@@ -99,11 +82,13 @@
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-		curl_setopt($curl, CURLOPT_HEADER, true);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		// curl_setopt($curl, CURLOPT_HEADER, true);
+		// curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-		// $curl_log = fopen('curl.txt', 'w');
-		// curl_setopt($curl, CURLOPT_STDERR, $curl_log);
+		date_default_timezone_set('UTC');
+
+		$file = fopen('./search/'.$search.'-'.date('ymd-His-T').'.json', 'w');
+		curl_setopt($curl, CURLOPT_FILE, $file);
 		// curl_setopt($curl, CURLOPT_VERBOSE, true);
 
 		$res = curl_exec($curl);
@@ -113,21 +98,12 @@
 	// 	return print($ex);
 	// }
 
-	// fclose($curl_log);
+	fclose($file);
 	// if (!$res) {
 	// 	return print(file_get_contents('curl.txt'));
 	// }
 
-	$res_headers = substr($res, 0, $header_size);
-	$res_body = substr($res, $header_size);
+	print($search);
+}
 
-	foreach (explode(PHP_EOL, $res_headers) as $header)
-		// Safari compatibility
-		if (strpos($header, 'HTTP/2') === 0) {
-			// header(str_replace('HTTP/2', 'HTTP/1.1', $header), true, 200);
-		// else if (strpos($header, 'content-encoding') !== false)
-		} else if (strpos($header, 'content-disposition: attachment') === false) {
-			header($header, false);
-		}
-	print($res_body);
 ?>

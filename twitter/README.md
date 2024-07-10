@@ -34,13 +34,13 @@ bun test --watch
 # PHP
 docker run \
 	--log-driver local \
-	--name ariadne-php \
+	--name ariadne-php-9999 \
 	--publish=9999:8000 \
 	--volume ~/Documents/ariadne:/usr/src/app \
 	--workdir /usr/src/app \
 	--detach \
 	--interactive \
 	--tty \
-	php:8.3.4-alpine \
+	php:5.6-alpine \
 	php -S 0.0.0.0:8000
 ```

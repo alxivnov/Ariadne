@@ -1,4 +1,4 @@
-import { toRaw } from 'vue';
+import { markRaw, toRaw } from 'vue';
 
 import store from '../static/store.js';
 import tweet from './tweet.js';
@@ -6,29 +6,50 @@ import tweet from './tweet.js';
 
 export default {
 	template: /*html*/`
-<h5 class="position-fixed top-0 end-0 mt-3 me-3 z-3">
+<h5 class="position-fixed top-0 end-0 mt-4 me-4 z-3">
 	<span class="badge rounded-pill" :class="tweets.length ? 'bg-primary' : 'bg-secondary'">
 		{{ unread }}
 	</span>
 </h5>
 
-<div class="btn-group dropup position-fixed bottom-0 end-0 mb-3 me-3 z-3">
+<div class="btn-group dropup position-fixed bottom-0 end-0 mb-4 me-4 z-3">
 	<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 		<span class="me-1">
 			{{ lists[listId]?.name || lists[listId]?.id_str || lists[listId]?.rest_id || 'Lists' }}
 		</span>
 	</button>
 	<ul class="dropdown-menu">
+		<li>
+			<a class="dropdown-item" href="#">
+				TODO: Following
+			</a>
+		</li>
+		<li>
+			<a class="dropdown-item" href="#">
+				TODO: For you
+			</a>
+		</li>
+		<li>
+			<hr class="dropdown-divider">
+		</li>
 		<li v-for="key in Object.keys(lists)" :key="key">
 			<a class="dropdown-item" href="#" @click.prevent="select(lists[key])" :class="{ active: key == listId }" :aria-current="key == listId">
 				{{ lists[key]?.name || lists[key]?.id_str || lists[key]?.rest_id }}
 			</a>
 		</li>
-		<!--
 		<li v-if="Object.keys(lists).length">
 			<hr class="dropdown-divider">
 		</li>
-		-->
+		<li>
+			<a class="dropdown-item" href="#">
+				TODO: Search
+			</a>
+		</li>
+		<li>
+			<a class="dropdown-item" href="#">
+				TODO: Profile
+			</a>
+		</li>
 	</ul>
 </div>
 
@@ -66,7 +87,7 @@ export default {
 					let list = lists[this.listId];
 					let tweetId = store.getTweetId(this.listId);
 					return store.loadTweets(list, tweetId).then((tweets) => {
-						this.tweets = tweets;
+						this.tweets = markRaw(tweets);
 
 						this.$nextTick(() => {
 							this.scroll(tweetId);

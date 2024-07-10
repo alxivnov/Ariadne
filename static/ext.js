@@ -43,7 +43,7 @@ export default () => {
 			}, {});
 	};
 
-	String.prototype.trim = function (charlist, position) {
+	String.prototype.trim = function (charlist, position = 0) {
 		if (charlist === undefined)
 			charlist = '\s';
 

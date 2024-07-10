@@ -7,7 +7,7 @@ export default {
 		<span class="hstack">
 			<i class="bi bi-repeat me-2" v-if="retweeted"></i>
 			<i class="bi bi-quote me-2" v-if="quoted"></i>
-			<img class="rounded-circle me-2" :src="tweet.core.user_results?.result.legacy.profile_image_url_https" :alt="tweet.core.user_results?.result.legacy.name">
+			<img class="rounded-circle me-2" style="height: 48px" :src="tweet.core.user_results?.result.legacy.profile_image_url_https" :alt="tweet.core.user_results?.result.legacy.name">
 			<div class="vstack -w-100">
 				<h6 class="mt-1 hstack">
 					<a :class="muted ? 'text-body' : 'text-light'" class="me-1" :href="link(tweet, 'user')" target="_blank">{{ tweet.core.user_results?.result.legacy.name }}</a>
