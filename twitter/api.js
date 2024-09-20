@@ -92,7 +92,7 @@ APIS.forEach((name, i) => {
 		to.headers['Referer'] = to.headers['Referer'].replace(to.query.variables[variable], placeholder);
 		to.query.variables[variable] = placeholder;
 	});
-	to.headers['Referer'] = to.headers['Referer'].replace(/https:\/\/twitter\.com\/(?:\w+)((?:$|\/status|\/lists).*)/, 'https://twitter.com/#{screen_name}$1');
+	to.headers['Referer'] = to.headers['Referer'].replace(/https:\/\/x\.com\/(?:\w+)((?:$|\/status|\/lists).*)/, 'https://x.com/#{screen_name}$1');
 	if (to.query?.variables?.controller_data)
 		to.query.variables.controller_data = '#{}';
 	if (to.data?.variables?.seenTweetIds)

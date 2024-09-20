@@ -55,7 +55,12 @@ export default {
 				let entries = json?.data?.list?.tweets_timeline?.timeline?.instructions?.find(el => el.type == 'TimelineAddEntries')?.entries || [];
 				let tweets = entries
 					.map(el => el.content?.itemContent?.tweet_results?.result)
-					.filter(el => el && el.rest_id);
+					.filter(el => el && el.rest_id)
+					.filter((tweet) => {
+						let retweet = tweet.legacy.retweeted_status_result?.result;
+						return !retweet
+							|| tweet.core.user_results?.result.legacy.screen_name != retweet.core.user_results?.result.legacy.screen_name;
+					});
 				let cursors = entries
 					.filter(el => el.content?.__typename == 'TimelineTimelineCursor')
 					.reduce((prev, curr) => ({ ...prev, [curr.content.cursorType.toLowerCase()]: curr.content.value }), {});

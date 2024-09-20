@@ -20,6 +20,30 @@ export default {
 	</button>
 	<ul class="dropdown-menu">
 		<li>
+			<a class="dropdown-item" href="./static/store.js" target="_blank">
+				./static/store.js
+			</a>
+		</li>
+		<li>
+			<a class="dropdown-item" href="./twitter/api.js" target="_blank">
+				./twitter/api.js
+			</a>
+		</li>
+		<li>
+			<a class="dropdown-item" href="./views/app.js" target="_blank">
+				./views/app.js
+			</a>
+		</li>
+		<li>
+			<a class="dropdown-item" href="./views/tweet.js" target="_blank">
+				./views/tweet.js
+			</a>
+		</li>
+		<li>
+			<hr class="dropdown-divider">
+		</li>
+
+		<li>
 			<a class="dropdown-item" href="#">
 				TODO: Following
 			</a>

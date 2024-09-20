@@ -1,6 +1,6 @@
 {
     "method": "GET",
-    "url": "https://twitter.com/i/api/graphql/qr1S49acWUfvpJsTg8YF_w/SearchTimeline",
+    "url": "https://x.com/i/api/graphql/qr1S49acWUfvpJsTg8YF_w/SearchTimeline",
     "headers": {
         "Accept": "*/*",
         "Accept-Encoding": "gzip, deflate, br",
@@ -9,8 +9,8 @@
         "Connection": "keep-alive",
         "Content-Type": "application/json",
         "Cookie": "auth_token=#{auth_token}; ct0=#{csrf_token}",
-        "Host": "twitter.com",
-        "Referer": "https://twitter.com/search?q=#{rawQuery}&src=typed_query",
+        "Host": "x.com",
+        "Referer": "https://x.com/search?q=#{rawQuery}&src=typed_query",
         "Sec-Fetch-Dest": "empty",
         "Sec-Fetch-Mode": "cors",
         "Sec-Fetch-Site": "same-origin",

@@ -1,5 +1,5 @@
 <?php
-	// https://developer.twitter.com/en/docs/authentication/oauth-2-0
+	// https://developer.x.com/en/docs/authentication/oauth-2-0
 
 	function array_key_value($key, $array, $default = NULL) {
 		return array_key_exists($key, $array)

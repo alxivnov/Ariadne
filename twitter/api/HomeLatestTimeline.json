@@ -1,6 +1,6 @@
 {
     "method": "POST",
-    "url": "https://twitter.com/i/api/graphql/jkZHUjDWc26UNanw6IfHtg/HomeLatestTimeline",
+    "url": "https://x.com/i/api/graphql/jkZHUjDWc26UNanw6IfHtg/HomeLatestTimeline",
     "headers": {
         "Accept": "*/*",
         "Accept-Encoding": "gzip, deflate, br",
@@ -10,9 +10,9 @@
         "Content-Length": "1346",
         "Content-Type": "application/json",
         "Cookie": "auth_token=#{auth_token}; ct0=#{csrf_token}",
-        "Host": "twitter.com",
-        "Origin": "https://twitter.com",
-        "Referer": "https://twitter.com/#{screen_name}",
+        "Host": "x.com",
+        "Origin": "https://x.com",
+        "Referer": "https://x.com/#{screen_name}",
         "Sec-Fetch-Dest": "empty",
         "Sec-Fetch-Mode": "cors",
         "Sec-Fetch-Site": "same-origin",
