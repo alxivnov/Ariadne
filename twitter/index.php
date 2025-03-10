@@ -122,12 +122,17 @@
 	$res_body = substr($res, $header_size);
 
 	foreach (explode(PHP_EOL, $res_headers) as $header)
-		// Safari compatibility
 		if (strpos($header, 'HTTP/2') === 0) {
-			// header(str_replace('HTTP/2', 'HTTP/1.1', $header), true, 200);
+			// Disable HTTP/2 for Safari + php -S compatibility
+			header(str_replace('HTTP/2', 'HTTP/1.1', $header));
 		// else if (strpos($header, 'content-encoding') !== false)
-		} else if (strpos($header, 'content-disposition: attachment') === false) {
-			header($header, false);
+		} else if (
+			// Disable attachment for viewing in browser
+			stripos($header, 'Content-Disposition: attachment') !== 0
+				// Disable chunking for resending
+				&& stripos($header, 'Transfer-Encoding: chunked') !== 0
+		) {
+			header($header);
 		}
 	print($res_body);
 ?>
